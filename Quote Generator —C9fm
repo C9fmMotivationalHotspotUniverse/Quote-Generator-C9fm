@@ -1,0 +1,26 @@
+<h2>Motivational Hotspot Entry</h2>
+<input type="text" id="inputText" placeholder="Drop your fire here..." />
+<button onclick="saveHotspot()">Save Hotspot</button>
+
+<h3>Today’s Hotspot:</h3>
+<p id="displayArea"></p>
+
+<script>
+    function saveHotspot() {
+        let quote = document.getElementById("inputText").value;
+        let today = new Date().toLocaleString();
+
+        let final = "C9fm [" + today + "] says: " + quote;
+
+        document.getElementById("displayArea").innerText = final;
+
+        // Save to localStorage so it stays even if you refresh
+        localStorage.setItem("hotspotToday", final);
+    }
+
+    // Auto-load last entry
+    window.onload = () => {
+        let saved = localStorage.getItem("hotspotToday");
+        if (saved) document.getElementById("displayArea").innerText = saved;
+    }
+</script>
